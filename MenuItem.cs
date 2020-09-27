@@ -6,9 +6,16 @@ namespace exam1
         public string Name {get; set;}
         public string Description {get; set;}
         public double Price {get; set;}
+        public ISave saveBehavior;
 
-        public static void Save(MenuItem item){
-            Console.WriteLine($"Saving {item.Name} to the local database");
+        public void SetSaveBehavior(ISave value)
+        {
+            saveBehavior = value;
+        }
+
+        public void Save(MenuItem item)
+        {
+            SetSaveBehavior(new DatabaseSave());
         }
     }
 }
